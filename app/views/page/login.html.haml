@@ -1,0 +1,18 @@
+.container.text-center.mt-5
+  .row
+    .col-md-6.offset-md-3
+      .card.mt-4
+        .card-body
+          %h2 Login to Your Account
+          - if flash[:error].present?
+            .alert.alert-danger
+              = flash[:error]
+          = form_with(url: login_path, method: 'post', local: true) do |f|
+            .form-group
+              = f.label :email, class: 'form-label'
+              = f.email_field :email, class: 'form-control', required: true, placeholder: 'Email'
+            .form-group
+              = f.label :password, class: 'form-label'
+              = f.password_field :password, class: 'form-control', required: true, placeholder: 'Password'
+            .mt-4
+              = f.submit 'Log In', class: 'btn btn-primary btn-block'

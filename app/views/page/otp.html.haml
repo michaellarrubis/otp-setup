@@ -1,0 +1,15 @@
+.container.text-center.mt-5
+  .row
+    .col-md-6.offset-md-3
+      .card.mt-4
+        .card-body
+          %h2 Enter Your OTP Code
+          - if flash[:error].present?
+            .alert.alert-danger
+              = flash[:error]
+          = form_with(url: otp_path, method: 'post', local: true) do |f|
+            .form-group
+              = f.label :otp_code, class: 'form-label'
+              = f.text_field :otp_code, class: 'form-control', required: true, placeholder: 'Enter OTP Code'
+            .mt-4
+              = f.submit 'Submit OTP', class: 'btn btn-primary btn-block'

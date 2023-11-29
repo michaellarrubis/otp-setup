@@ -1,0 +1,25 @@
+.container.text-center.mt-5
+  .row
+    .col-md-6.offset-md-3
+      %h1.mb-4 Welcome to Your App
+      - if @user.nil?
+        .alert.alert-info
+          %p
+            Please
+            = link_to 'Log In', login_path
+      - else
+        .card.mt-4
+          .card-body
+            %h2
+              = "Hello, #{@user.name}!"
+            - if !@user.otp_enabled
+              %p
+                Your account is not yet secured with OTP.
+                %br
+                = link_to 'Set up OTP', add_otp_path, class: 'btn btn-primary'
+            - else
+              %p Your account is secured with OTP.
+              %br
+              %span.badge.badge-success OTP Enabled
+              %br
+            = link_to 'Log Out', logout_path, class: 'btn btn-danger'
